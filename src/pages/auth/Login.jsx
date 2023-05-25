@@ -8,15 +8,17 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase/config'
 
-export const Register = () => {
+export const Login = () => {
   const { register, handleSubmit, formState } = useForm()
+  const { errors, isSubmitting } = formState
+  console.log(errors)
 
-  const createAccount = async (data) => {
+  const loginAccount = async (data) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         data.email,
         data.password
@@ -29,11 +31,9 @@ export const Register = () => {
       console.log(errorCode, errorMessage)
     }
   }
-  const { errors, isSubmitting } = formState
-  console.log(errors)
 
   return (
-    <Container as="form" onSubmit={handleSubmit(createAccount)}>
+    <Container as="form" onSubmit={handleSubmit(loginAccount)}>
       <SimpleGrid gap={5} justifyContent="center">
         <FormControl isInvalid={errors.email}>
           <FormLabel>Email</FormLabel>
@@ -78,7 +78,7 @@ export const Register = () => {
           type="submit"
           isLoading={isSubmitting}
         >
-          Crear cuenta
+          Iniciar sesión
         </Button>
       </SimpleGrid>
     </Container>
