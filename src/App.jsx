@@ -1,11 +1,11 @@
 import { AppLayout } from './layout/AppLayout'
-import { Login } from './pages/auth/Login'
-import { Register } from './pages/auth/Register'
+import { Products } from './pages/Products'
+// import { Login } from './pages/auth/Login'
 
 function App() {
   return (
     <AppLayout>
-      <Login />
+      <Products />
     </AppLayout>
   )
 }

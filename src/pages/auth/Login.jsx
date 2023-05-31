@@ -8,28 +8,16 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase/config'
+import { loginWithEmail } from '../../services/auth'
 
 export const Login = () => {
   const { register, handleSubmit, formState } = useForm()
   const { errors, isSubmitting } = formState
-  console.log(errors)
+  //console.log(errors)
 
   const loginAccount = async (data) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      )
-      const user = userCredential.user
-      console.log(user)
-    } catch (error) {
-      const errorCode = error.code
-      const errorMessage = error.message
-      console.log(errorCode, errorMessage)
-    }
+    loginWithEmail(data)
+    alert('logeado')
   }
 
   return (
