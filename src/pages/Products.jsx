@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getAllProducts } from '../services/products'
 import {
   Button,
@@ -13,11 +13,14 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import { CartProductsContext } from '../context/CartProductsContext'
 
 export const Products = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const { addToCart } = useContext(CartProductsContext)
   useEffect(() => {
     const getData = async () => {
       try {
@@ -32,6 +35,7 @@ export const Products = () => {
     }
     getData()
   }, [])
+
   return (
     <SimpleGrid spacing={5} columns={{ base: 1, md: 2, lg: 3 }} p={2}>
       {error && <span>Ha ocurrido un error</span>}
@@ -47,7 +51,6 @@ export const Products = () => {
             />
             <Stack mt="6" spacing="3">
               <Heading size="md">{product.name}</Heading>
-              <Text>{product.description}</Text>
               <Text color="blue.600" fontSize="2xl">
                 {`$${product.price}`}
               </Text>
@@ -56,7 +59,13 @@ export const Products = () => {
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
-              <Button variant="solid" colorScheme="blue">
+              <Button
+                as={Link}
+                to={`/products/${product.id}`}
+                variant="solid"
+                colorScheme="blue"
+                onClick={() => addToCart(product)}
+              >
                 Ver Detalles
               </Button>
               <Button variant="ghost" colorScheme="blue">
