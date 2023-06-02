@@ -9,8 +9,16 @@ export const CartProductsProvider = ({ children }) => {
     const existProduct = cartProducts.some((p) => p.id === product.id)
     if (!existProduct) setCartProducts([...cartProducts, product])
   }
+  const removeProductToCart = (id) => {
+    setCartProducts((prev) => prev.filter((p) => p.id !== id))
+  }
+
+  const clearCart = () => setCartProducts([])
+
   return (
-    <CartProductsContext.Provider value={(cartProducts, addToCart)}>
+    <CartProductsContext.Provider
+      value={(cartProducts, addToCart, removeProductToCart, clearCart)}
+    >
       {children}
     </CartProductsContext.Provider>
   )
