@@ -7,6 +7,8 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  SimpleGrid,
+  Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
@@ -30,17 +32,24 @@ export const CartProducts = () => {
           <DrawerHeader>Carrito de Compras</DrawerHeader>
 
           <DrawerBody>
-            {cartProducts?.map((product) => (
-              <CartProductCard key={product.id} product={product} />
-            ))}
+            <SimpleGrid gap={5}>
+              {cartProducts?.map((product) => (
+                <CartProductCard key={product.id} product={product} />
+              ))}
+              {!cartProducts.length && (
+                <Text align="center">No hay productos en el carrito :(</Text>
+              )}
+            </SimpleGrid>
           </DrawerBody>
 
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={clearCart}>
-              Vaciar carrito
-            </Button>
-            <Button colorScheme="blue">Finalizar compra</Button>
-          </DrawerFooter>
+          {!!cartProducts.length && (
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={clearCart}>
+                Vaciar carrito
+              </Button>
+              <Button colorScheme="blue">Finalizar compra</Button>
+            </DrawerFooter>
+          )}
         </DrawerContent>
       </Drawer>
     </>

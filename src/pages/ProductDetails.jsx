@@ -8,10 +8,18 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-// import { useParams } from 'react-router-dom'
+import { useProducts } from '../hooks/useProducts'
+import { useParams } from 'react-router-dom'
+// import { useMemo } from 'react'
 
 export const ProductDetails = () => {
-  //   const { id } = useParams()
+  const { id } = useParams()
+  const { products } = useProducts()
+  //   const product = products.find((p) => p.id === id)
+  console.log(products, id)
+  //   const product = products[0]
+  const product = products.find((p) => p.id === id)
+  console.log(product)
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
@@ -21,7 +29,7 @@ export const ProductDetails = () => {
       <Image
         objectFit="cover"
         maxW={{ base: '100%', sm: '200px' }}
-        src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+        // src={product.image}
         alt="Caffe Latte"
       />
 
@@ -29,15 +37,12 @@ export const ProductDetails = () => {
         <CardBody>
           <Heading size="md">The perfect latte</Heading>
 
-          <Text py="2">
-            Caffè latte is a coffee beverage of Italian origin made with
-            espresso and steamed milk.
-          </Text>
+          <Text py="2">product.description</Text>
         </CardBody>
 
         <CardFooter>
           <Button variant="solid" colorScheme="blue">
-            Buy Latte
+            Agregar al carrito
           </Button>
         </CardFooter>
       </Stack>

@@ -6,9 +6,11 @@ import {
   FormLabel,
   Input,
   SimpleGrid,
+  Stack,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { loginWithEmail } from '../../services/auth'
+import { NavLink } from 'react-router-dom'
 
 export const Login = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -60,14 +62,19 @@ export const Login = () => {
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
 
-        <Button
-          mt={4}
-          colorScheme="teal"
-          type="submit"
-          isLoading={isSubmitting}
-        >
-          Iniciar sesión
-        </Button>
+        <Stack mt={4}>
+          <Button colorScheme="teal" type="submit" isLoading={isSubmitting}>
+            Iniciar sesión
+          </Button>
+          <Button
+            as={NavLink}
+            to={'/register'}
+            variant="outline"
+            isLoading={isSubmitting}
+          >
+            Registrarse
+          </Button>
+        </Stack>
       </SimpleGrid>
     </Container>
   )

@@ -7,7 +7,7 @@ export const NavApp = () => {
       <Heading>ADA Shop</Heading>
       <HStack as="nav" gap="5" justifyContent="flex-end">
         <Link as={NavLink} to="/">
-          Home
+          Inicio
         </Link>
         <Link as={NavLink} to="/products">
           Productos

@@ -1,10 +1,10 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
   Heading,
+  IconButton,
   Image,
   Stack,
   Text,
@@ -22,9 +22,10 @@ export const CartProductCard = ({ product }) => {
     >
       <Image
         objectFit="cover"
-        maxW={{ base: '100%', sm: '150px' }}
+        maxH={{ base: '100%', sm: '150px' }}
         src={product.image}
         alt={product.name}
+        m={3}
       />
 
       <Stack>
@@ -35,13 +36,12 @@ export const CartProductCard = ({ product }) => {
         </CardBody>
 
         <CardFooter>
-          <Button
+          <IconButton
             variant="solid"
             colorScheme="red"
+            icon={<DeleteIcon />}
             onClick={() => removeProductToCart(product.id)}
-          >
-            <DeleteIcon />
-          </Button>
+          ></IconButton>
         </CardFooter>
       </Stack>
     </Card>
