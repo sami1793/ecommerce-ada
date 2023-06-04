@@ -1,6 +1,6 @@
 import { Button, HStack, Heading, Link, SimpleGrid } from '@chakra-ui/react'
 import { Link as NavLink } from 'react-router-dom'
-import { HiOutlineShoppingBag } from 'react-icons/hi'
+import { CartProducts } from './cartProducts/CartProducts'
 export const NavApp = () => {
   return (
     <SimpleGrid columns={2} p={5}>
@@ -12,12 +12,15 @@ export const NavApp = () => {
         <Link as={NavLink} to="/products">
           Productos
         </Link>
-        <Button as={NavLink} to="/iniciar-sesion">
-          Iniciar Sesion
-        </Button>
-        <Button as={NavLink} to="/carrito">
+        <HStack justifyContent="flex-end">
+          <Button as={NavLink} to="/iniciar-sesion">
+            Iniciar Sesion
+          </Button>
+          {/* <Button>
           <HiOutlineShoppingBag />
-        </Button>
+        </Button> */}
+          <CartProducts />
+        </HStack>
       </HStack>
     </SimpleGrid>
   )

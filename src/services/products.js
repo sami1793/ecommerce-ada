@@ -12,6 +12,5 @@ export const getAllProducts = async () => {
       id: doc.id,
     })
   })
-  console.log(products)
   return products
 }

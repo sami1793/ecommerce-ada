@@ -64,11 +64,14 @@ export const Products = () => {
                 to={`/products/${product.id}`}
                 variant="solid"
                 colorScheme="blue"
-                onClick={() => addToCart(product)}
               >
                 Ver Detalles
               </Button>
-              <Button variant="ghost" colorScheme="blue">
+              <Button
+                variant="ghost"
+                colorScheme="blue"
+                onClick={() => addToCart(product)}
+              >
                 Agregar al carrito
               </Button>
             </ButtonGroup>
