@@ -1,11 +1,15 @@
+import { Outlet } from 'react-router-dom'
 import { NavApp } from '../components/NavApp'
+import { Footer } from '../components/Footer'
 
-export const AppLayout = ({ children }) => {
+export const AppLayout = () => {
   return (
     <>
       <NavApp />
-      <div>{children}</div>
-      <footer>footer</footer>
+      <div>
+        <Outlet />
+      </div>
+      <Footer />
     </>
   )
 }

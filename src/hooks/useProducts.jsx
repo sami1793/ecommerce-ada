@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react'
-import { getAllProducts } from '../services/products'
-import { useParams } from 'react-router-dom'
+// import { getAllProducts } from '../services/products'-router-dom'
+import { allProductsWithFilter } from '../services/product.service'
 
 export const useProducts = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-  const { id } = useParams()
+  //   const [filterProduct, setFilterProduct] = useState({
+  //     name: '',
+  //     marca: '',
+  //     price: '',
+  //   })
+  //   const handleFilter = (e) => {
+  //     setFilterProduct({ ...filterProduct, [e.target.name]: e.target.value })
+  //   }
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await getAllProducts()
+        // const data = await getAllProducts()
+        const data = await allProductsWithFilter()
 
         setProducts(data)
       } catch (error) {
@@ -22,11 +30,9 @@ export const useProducts = () => {
     getData()
   }, [])
 
-  const productID = products.find((c) => c.id === id)
   return {
     products,
     loading,
     error,
-    productID,
   }
 }

@@ -8,17 +8,37 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { useProducts } from '../hooks/useProducts'
+import { useEffect, useState } from 'react'
+// import { useProducts } from '../hooks/useProducts'
 import { useParams } from 'react-router-dom'
+import { getProductByID } from '../services/product.service'
 // import { useMemo } from 'react'
 
 export const ProductDetails = () => {
   const { id } = useParams()
-  const { products } = useProducts()
-  //   const product = products.find((p) => p.id === id)
-  console.log(products, id)
-  //   const product = products[0]
-  const product = products.find((p) => p.id === id)
+  // const { products } = useProducts()
+  // console.log(products, id)
+  // const product = products.find((p) => p.id === id)
+  // console.log(product.name)
+
+  const [product, setProduct] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await getProductByID(id)
+
+        setProduct(data)
+      } catch (error) {
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getData()
+  }, [id])
   console.log(product)
   return (
     <Card
@@ -30,7 +50,7 @@ export const ProductDetails = () => {
         objectFit="cover"
         maxW={{ base: '100%', sm: '200px' }}
         // src={product.image}
-        alt="Caffe Latte"
+        alt="{product.name}"
       />
 
       <Stack>
