@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-// import { getAllProducts } from '../services/products'-router-dom'
-import { allProductsWithFilter } from '../services/product.service'
+import { getAllProducts } from '../services/products'
+// import { allProductsWithFilter } from '../services/product.service'
 
 export const useProducts = () => {
   const [products, setProducts] = useState([])
@@ -17,9 +17,8 @@ export const useProducts = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        // const data = await getAllProducts()
-        const data = await allProductsWithFilter()
-
+        const data = await getAllProducts()
+        // const data = await allProductsWithFilter()
         setProducts(data)
       } catch (error) {
         setError(true)
