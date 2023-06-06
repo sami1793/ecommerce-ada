@@ -7,7 +7,7 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react'
 
-export const Filters = () => {
+export const Filters = ({ handleFilter, filterProduct }) => {
   return (
     <SimpleGrid
       w="full"
@@ -21,7 +21,13 @@ export const Filters = () => {
         <InputLeftElement>
           <SearchIcon color="gray.400" />
         </InputLeftElement>
-        <Input type="text" placeholder="Buscar.."></Input>
+        <Input
+          type="text"
+          name="name"
+          value={filterProduct.name}
+          placeholder="Buscar.."
+          onChange={handleFilter}
+        ></Input>
       </InputGroup>
 
       <Select placeholder="Marca" name="status">

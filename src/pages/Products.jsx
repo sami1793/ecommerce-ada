@@ -4,11 +4,12 @@ import { Filters } from '../components/filters/Filters'
 import { ProductCard } from '../components/products/ProductCard'
 
 export const Products = () => {
-  const { products, loading, error } = useProducts()
+  const { products, loading, error, handleFilter, filterProduct } =
+    useProducts()
 
   return (
     <>
-      <Filters />
+      <Filters handleFilter={handleFilter} filterProduct={filterProduct} />
       <SimpleGrid spacing={5} columns={{ base: 1, md: 2, lg: 3 }} p={2}>
         {error && <span>Ha ocurrido un error</span>}
 

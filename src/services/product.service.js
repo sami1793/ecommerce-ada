@@ -8,12 +8,12 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase/config'
 
-export const allProductsWithFilter = async () => {
+export const allProductsWithFilter = async (name) => {
   const q = query(
     collection(db, 'products'),
-    orderBy('marca'),
-    startAt('motorola'),
-    endAt('motorola' + '\uf8ff')
+    orderBy('name'),
+    startAt(name),
+    endAt(name + '\uf8ff')
   )
   let products = []
   const querySnapshot = await getDocs(q)

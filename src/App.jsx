@@ -10,22 +10,6 @@ import { Register } from './pages/auth/Register'
 
 function App() {
   return (
-    // <>
-    //   <AppLayout>
-    //     <Routes>
-    //       <Route path="/" element={<Home />}></Route>
-    //       <Route path="/products" element={<Products />}></Route>
-    //       <Route path="/products/:id" element={<ProductDetails />}></Route>
-    //       <Route path="*" element={<h1>404 Not Found</h1>}></Route>
-    //     </Routes>
-    //   </AppLayout>
-
-    //   <Routes>
-    //     <Route path="/iniciar-sesion" element={<Login />}></Route>
-    //     <Route path="/register" element={<Register />}></Route>
-    //   </Routes>
-    // </>
-
     <Routes>
       <Route element={<AppLayout />}>
         <Route path="/" element={<Home />}></Route>
