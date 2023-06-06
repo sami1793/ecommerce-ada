@@ -3,7 +3,7 @@ import { FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 export const Footer = () => {
   return (
-    <Box as="footer" py={4} bg="gray.500">
+    <Box as="footer" py={4} bg="gray.700" color="white">
       <Box textAlign="center">
         <Link href="https://twitter.com" isExternal mx={2}>
           <IconButton

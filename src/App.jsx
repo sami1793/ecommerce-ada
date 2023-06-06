@@ -34,7 +34,7 @@ function App() {
         <Route path="*" element={<h1>404 Not Found</h1>}></Route>
       </Route>
 
-      <Route path="/iniciar-sesion" element={<Login />}></Route>
+      <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
     </Routes>
   )

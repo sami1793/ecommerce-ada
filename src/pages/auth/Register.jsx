@@ -6,16 +6,37 @@ import {
   FormLabel,
   Input,
   SimpleGrid,
+  useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { registerWithEmail } from '../../services/auth'
+import { useNavigate } from 'react-router-dom'
 
 export const Register = () => {
   const { register, handleSubmit, formState } = useForm()
+  const toast = useToast()
+  const navigate = useNavigate()
 
   const createAccount = async (data) => {
-    const user = await registerWithEmail(data)
-    console.log(user)
+    try {
+      await registerWithEmail(data)
+      toast({
+        title: 'Cuenta creada correctamente',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      navigate('/')
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error.message,
+        status: 'error',
+        position: 'top',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
   }
   const { errors, isSubmitting } = formState
   console.log(errors)

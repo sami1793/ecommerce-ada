@@ -32,7 +32,8 @@ export const CartProductCard = ({ product }) => {
         <CardBody>
           <Heading size="sm">{product.name}</Heading>
 
-          <Text py="2">Cantidad:{product.quantityProduct}</Text>
+          <Text py="2">Cantidad: {product.quantity}</Text>
+          <Text py="2">Total: {product.price * product.quantity}</Text>
         </CardBody>
 
         <CardFooter>

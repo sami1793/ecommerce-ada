@@ -20,5 +20,19 @@ export const UserProvider = ({ children }) => {
       }
     })
   }, [])
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>
+  // Login
+  const handleLogin = (user) => {
+    setUser(user)
+  }
+  //Logout
+  const handleLogout = () => {
+    // signOut(auth).then(() => {
+    setUser(null)
+    // })
+  }
+  return (
+    <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
+      {children}
+    </UserContext.Provider>
+  )
 }

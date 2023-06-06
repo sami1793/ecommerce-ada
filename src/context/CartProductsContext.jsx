@@ -8,19 +8,18 @@ export const CartProductsProvider = ({ children }) => {
   const initialCart = getLocalStorage('cartProductsStorage') || []
   const [cartProducts, setCartProducts] = useState(initialCart)
 
-  // const [quantityProduct, setQuantityProduct] = useState(1)
   const toast = useToast()
   const addToCart = (product) => {
-    // const existProduct = cartProducts.some((p) => p.id === product.id)
-    // if (existProduct) {
-    //   setQuantityProduct(quantityProduct + 1)
-    //   console.log(quantityProduct)
-    // } else {
-    //   setQuantityProduct(1)
-    // }
-    // product = { ...product, quantityProduct }
-    setCartProducts([...cartProducts, product])
-    console.log(cartProducts)
+    const existProduct = cartProducts.some((p) => p.id === product.id)
+    if (existProduct) {
+      const newCartProducts = cartProducts.map((p) =>
+        p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+      )
+      setCartProducts(newCartProducts)
+    } else {
+      setCartProducts([...cartProducts, { ...product, quantity: 1 }])
+      console.log(cartProducts)
+    }
 
     toast({
       title: 'Se agregó producto al carrito',
@@ -43,13 +42,24 @@ export const CartProductsProvider = ({ children }) => {
     setCartProducts([])
   }
 
+  const totalCartProducts = cartProducts.reduce((suma, product) => {
+    return suma + product.price * product.quantity
+  }, 0)
+
+  //se almacena en local storage cada vez que hay un cambio en cartProducts
   useEffect(() => {
     setLocalStorage('cartProductsStorage', cartProducts)
   }, [cartProducts])
 
   return (
     <CartProductsContext.Provider
-      value={{ cartProducts, addToCart, removeProductToCart, clearCart }}
+      value={{
+        cartProducts,
+        addToCart,
+        removeProductToCart,
+        clearCart,
+        totalCartProducts,
+      }}
     >
       {children}
     </CartProductsContext.Provider>

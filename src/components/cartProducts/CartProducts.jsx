@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -12,18 +13,18 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
-import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { CartProductCard } from './CartProductCard'
 import { CartProductsContext } from '../../context/CartProductsContext'
+import { BsCartFill } from 'react-icons/bs'
 
 export const CartProducts = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { cartProducts, addToCart, removeProductToCart, clearCart } =
+  const { cartProducts, clearCart, totalCartProducts } =
     useContext(CartProductsContext)
   return (
     <>
-      <Button colorScheme="teal" onClick={onOpen}>
-        <HiOutlineShoppingBag />
+      <Button colorScheme="facebook" onClick={onOpen}>
+        <BsCartFill />
       </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
@@ -36,6 +37,8 @@ export const CartProducts = () => {
               {cartProducts?.map((product) => (
                 <CartProductCard key={product.id} product={product} />
               ))}
+              <Divider />
+              <Text align="end">TOTAL : {totalCartProducts}</Text>
               {!cartProducts.length && (
                 <Text align="center">No hay productos en el carrito :(</Text>
               )}
