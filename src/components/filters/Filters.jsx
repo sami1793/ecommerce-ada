@@ -30,13 +30,24 @@ export const Filters = ({ handleFilter, filterProduct }) => {
         ></Input>
       </InputGroup>
 
-      <Select placeholder="Marca" name="status">
+      <Select
+        placeholder="Marca"
+        name="marca"
+        value={filterProduct.marca}
+        onChange={handleFilter}
+      >
         <option value="motorola">Motorola</option>
         <option value="samsung">Samsung</option>
-        <option value="xiamomi">Xiamomi</option>
+        <option value="xiaomi">Xiaomi</option>
       </Select>
       <InputGroup>
-        <Input type="text" placeholder="Precio máximo"></Input>
+        <Input
+          type="number"
+          placeholder="Precio máximo"
+          name="price"
+          value={filterProduct.price}
+          onChange={handleFilter}
+        ></Input>
       </InputGroup>
     </SimpleGrid>
   )

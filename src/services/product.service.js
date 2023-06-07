@@ -18,7 +18,7 @@ export const allProductsWithFilter = async (name) => {
   let products = []
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
-    console.log(doc.id, '=>', doc.data())
+    // console.log(doc.id, '=>', doc.data())
     products.push({
       ...doc.data(),
       id: doc.id,
