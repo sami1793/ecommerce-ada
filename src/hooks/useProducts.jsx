@@ -51,7 +51,6 @@ export const useProducts = () => {
             debounceValue.marca
           )
         )
-        console.log(debounceValue)
       } catch (error) {
         setError(true)
       } finally {

@@ -4,15 +4,18 @@ import {
   CardBody,
   CardFooter,
   Center,
+  Flex,
   Heading,
   Image,
   Spinner,
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { getProductByID } from '../services/products'
+import { BsCartFill } from 'react-icons/bs'
+import { CartProductsContext } from '../context/CartProductsContext'
 
 // import { useMemo } from 'react'
 
@@ -21,6 +24,13 @@ export const ProductDetails = () => {
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const { addToCart } = useContext(CartProductsContext)
+  const specifications = [
+    'Cámara trasera',
+    'Display',
+    'Procesador',
+    'Celular liberado',
+  ]
 
   useEffect(() => {
     const getData = async () => {
@@ -46,22 +56,56 @@ export const ProductDetails = () => {
       >
         <Image
           objectFit="cover"
-          maxW={{ base: '100%', sm: '200px' }}
+          maxH={{ base: '100%', sm: '80vh' }}
+          maxW={{ sm: '300px' }}
           src={product.image}
           alt={product.name}
         />
 
         <Stack>
           <CardBody>
-            <Heading size="md">{product.name}</Heading>
+            <Heading size="lg" mb={5}>
+              {product.name}
+            </Heading>
 
-            <Text py="2">{product.description}</Text>
+            {product.description?.map((d, index) => (
+              <>
+                <Text as="b">{specifications[index]}</Text>
+                <Text key={index} py="2">
+                  {d}
+                </Text>
+              </>
+            ))}
+            <Text>{product.description}</Text>
+            <Text color="blue.400" fontSize="3xl" mt={3}>
+              {`$${product.price}`}
+            </Text>
           </CardBody>
 
           <CardFooter>
-            <Button variant="solid" colorScheme="blue">
-              Agregar al carrito
-            </Button>
+            <Flex
+              gap="5"
+              direction={{ base: 'column', md: 'row' }}
+              justifyContent={'center'}
+              alignItems={'center'}
+            >
+              <Button
+                variant="outline"
+                colorScheme="gray"
+                as={Link}
+                to="/products"
+              >
+                Volver atras
+              </Button>
+              <Button
+                variant="solid"
+                colorScheme="facebook"
+                onClick={() => addToCart(product)}
+              >
+                <Text mr={2}>Agregar al carrito</Text>
+                <BsCartFill />
+              </Button>
+            </Flex>
           </CardFooter>
         </Stack>
       </Card>

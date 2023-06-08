@@ -24,3 +24,5 @@ export const getProductByID = async (id) => {
     console.log('NO se encontro el producto')
   }
 }
+
+// export const getFeaturedProducts = async
