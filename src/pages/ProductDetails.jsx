@@ -106,12 +106,13 @@ export const ProductDetails = () => {
                 variant="solid"
                 borderRadius="full"
                 border="2px"
+                borderColor="black"
                 bg="black"
                 color="white"
                 _hover={{ bg: 'white', color: 'black' }}
                 onClick={() => addToCart(product)}
               >
-                <Text mr={2}>Agregar al carrito</Text>
+                <Text mr={2}>Añadir</Text>
                 <BsCartFill />
               </Button>
             </Flex>

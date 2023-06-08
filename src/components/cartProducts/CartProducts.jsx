@@ -47,9 +47,11 @@ export const CartProducts = () => {
                 <CartProductCard key={product.id} product={product} />
               ))}
               <Divider />
-              <Text as="b" align="end">
-                TOTAL : {`$${totalCartProducts}`}
-              </Text>
+              {cartProducts.length > 0 && (
+                <Text as="b" align="end">
+                  TOTAL : {`$${totalCartProducts}`}
+                </Text>
+              )}
               {!cartProducts.length && (
                 <Text align="center">No hay productos en el carrito :(</Text>
               )}

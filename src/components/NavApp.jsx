@@ -19,7 +19,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FiLogOut } from 'react-icons/fi'
-import { EditIcon } from '@chakra-ui/icons'
+import { EditIcon, HamburgerIcon } from '@chakra-ui/icons'
 export const NavApp = () => {
   const { user, handleLogout } = useContext(UserContext)
   const toast = useToast()
@@ -48,14 +48,20 @@ export const NavApp = () => {
   return (
     <SimpleGrid columns={2} p={5} backgroundColor="gray.800" color="white">
       <Heading>ADA Shop</Heading>
-      <HStack as="nav" gap="5" justifyContent="flex-end">
-        <Link as={NavLink} to="/">
-          Inicio
-        </Link>
-        <Link as={NavLink} to="/products">
-          Productos
-        </Link>
-        <HStack justifyContent="flex-end">
+      {/* Deskptop */}
+      <HStack as="nav" justifyContent="flex-end">
+        <HStack
+          gap={2}
+          justifyContent="flex-end"
+          display={{ base: 'none', md: 'flex' }}
+        >
+          <Link as={NavLink} to="/">
+            Inicio
+          </Link>
+          <Link as={NavLink} to="/products">
+            Productos
+          </Link>
+
           {!user && (
             <Button
               variant="outline"
@@ -89,9 +95,44 @@ export const NavApp = () => {
               </MenuList>
             </Menu>
           )}
-          <CartProducts />
         </HStack>
+        <CartProducts />
+        {/* Mobile */}
+        <Menu>
+          <MenuButton
+            display={{ base: 'flex', md: 'none' }}
+            as={IconButton}
+            aria-label="Options"
+            icon={<HamburgerIcon />}
+            variant="outline"
+            color="white"
+            border="2px"
+            _hover={{ bg: 'white', color: 'black' }}
+            _active={{ bg: 'white', color: 'black' }}
+          />
+          <MenuList color="black">
+            <MenuItem as={NavLink} to="/">
+              Inicio
+            </MenuItem>
+            <MenuItem as={NavLink} to="/products">
+              Productos
+            </MenuItem>
+            {!user && (
+              <MenuItem as={NavLink} to="/login">
+                Iniciar Sesión
+              </MenuItem>
+            )}
+            {user && (
+              <>
+                <MenuItem>Mis Pedidos</MenuItem>
+                <MenuItem onClick={() => Logout()}>Cerrar Sesión</MenuItem>
+              </>
+            )}
+          </MenuList>
+        </Menu>
       </HStack>
     </SimpleGrid>
+
+    //Nav en mobile
   )
 }
