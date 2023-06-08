@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Center,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -79,95 +80,111 @@ export const Login = () => {
   }
 
   return (
-    <Box
-      maxW="md"
-      mx="auto"
-      mt={8}
-      p={6}
-      borderWidth="1px"
-      borderRadius="md"
-      boxShadow="md"
-    >
-      <IconButton
-        icon={<ArrowBackIcon />}
-        aria-label="Volver atrás"
-        mb={4}
-        onClick={() => handleBackClick()}
-      />
-      <Heading as="h2" size="lg" textAlign="center" mb={6}>
-        Iniciar sesión
-      </Heading>
-      <Center>
-        <Button
-          colorScheme="red"
-          variant="outline"
-          mt={4}
-          leftIcon={<FcGoogle />}
-          onClick={logWithGoogle}
-          isFullWidth
-        >
-          Iniciar sesión con Google
-        </Button>
-      </Center>
-      <form onSubmit={handleSubmit(loginAccount)}>
-        <FormControl id="email" isInvalid={errors.email} isRequired>
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            id="email"
-            {...register('email', {
-              required: {
-                value: true,
-                message: 'Este campo es requerido',
-              },
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: 'Este email no es válido',
-              },
-            })}
-          />
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-        </FormControl>
-        <FormControl
-          id="password"
-          mt={4}
-          isInvalid={errors.password}
-          isRequired
-        >
-          <FormLabel>Contraseña</FormLabel>
-          <Input
-            type="password"
-            id="password"
-            {...register('password', {
-              required: {
-                value: true,
-                message: 'Este campo es requerido',
-              },
-              minLength: {
-                value: 8,
-                message: 'El minimo de caracteres es 8',
-              },
-            })}
-          />
-          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-        </FormControl>
-        <Center>
+    <Flex bgColor="black.900" minH="100vh">
+      <Box
+        mx="auto"
+        minW={{ base: '95%', sm: '400px' }}
+        mt={8}
+        mb={8}
+        p={6}
+        borderWidth="1px"
+        borderRadius="md"
+        boxShadow="md"
+        bgColor="white"
+      >
+        <IconButton
+          icon={<ArrowBackIcon />}
+          aria-label="Volver atrás"
+          mb={4}
+          variant="solid"
+          color="white"
+          bg="black.900"
+          border="2px"
+          _hover={{ bg: 'black', color: 'white' }}
+          onClick={() => handleBackClick()}
+        />
+        <Heading as="h2" size="lg" textAlign="center" mb={6}>
+          Iniciar sesión
+        </Heading>
+        <Center mb={5}>
           <Button
-            type="submit"
-            colorScheme="blue"
-            mt={6}
+            variant="solid"
+            border="2px"
+            borderColor="black"
+            bg="black.900"
+            color="white"
+            _hover={{ bg: 'black', color: 'white' }}
+            mt={4}
+            leftIcon={<FcGoogle />}
+            onClick={logWithGoogle}
             isFullWidth
-            isLoading={isSubmitting}
           >
-            Iniciar sesión
+            Iniciar sesión con Google
           </Button>
         </Center>
-        <Box textAlign="center" mt={4}>
-          <Link color="blue.500" as={NavLink} to={'/register'}>
-            ¿No tienes una cuenta? Regístrate
-          </Link>
-        </Box>
-      </form>
-    </Box>
+        <form onSubmit={handleSubmit(loginAccount)}>
+          <FormControl id="email" isInvalid={errors.email} isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              id="email"
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: 'Este campo es requerido',
+                },
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: 'Este email no es válido',
+                },
+              })}
+            />
+            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl
+            id="password"
+            mt={4}
+            isInvalid={errors.password}
+            isRequired
+          >
+            <FormLabel>Contraseña</FormLabel>
+            <Input
+              type="password"
+              id="password"
+              {...register('password', {
+                required: {
+                  value: true,
+                  message: 'Este campo es requerido',
+                },
+                minLength: {
+                  value: 8,
+                  message: 'El minimo de caracteres es 8',
+                },
+              })}
+            />
+            <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+          </FormControl>
+          <Center>
+            <Button
+              type="submit"
+              bg="black"
+              border="2px"
+              color="white"
+              _hover={{ bg: 'white', color: 'black' }}
+              mt={6}
+              isFullWidth
+              isLoading={isSubmitting}
+            >
+              Iniciar sesión
+            </Button>
+          </Center>
+          <Box textAlign="center" mt={4}>
+            <Link color="blue.500" as={NavLink} to={'/register'}>
+              ¿No tienes una cuenta? Regístrate
+            </Link>
+          </Box>
+        </form>
+      </Box>
+    </Flex>
   )
 }
