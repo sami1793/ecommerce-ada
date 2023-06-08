@@ -25,6 +25,7 @@ export const ProductDetails = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const { addToCart } = useContext(CartProductsContext)
+  // const [quantity, setQuantity] = useState(1) min 01:38 rutas avanzadas
   const specifications = [
     'Cámara trasera',
     'Display',

@@ -6,6 +6,7 @@ import { ProductDetails } from './pages/ProductDetails'
 import { Login } from './pages/auth/Login'
 // import { FormLayout } from './layout/FormLayout'
 import { Register } from './pages/auth/Register'
+import { NotFound } from './pages/NotFound'
 // import { Login } from './pages/auth/Login'
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products/:id" element={<ProductDetails />}></Route>
-        <Route path="*" element={<h1>404 Not Found</h1>}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Route>
 
       <Route path="/login" element={<Login />}></Route>
