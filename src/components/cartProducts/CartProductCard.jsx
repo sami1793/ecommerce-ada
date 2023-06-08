@@ -3,6 +3,8 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Center,
+  HStack,
   Heading,
   IconButton,
   Image,
@@ -30,19 +32,31 @@ export const CartProductCard = ({ product }) => {
 
       <Stack>
         <CardBody>
-          <Heading size="sm">{product.name}</Heading>
-
-          <Text py="2">Cantidad: {product.quantity}</Text>
-          <Text py="2">Total: {product.price * product.quantity}</Text>
+          <Heading size="md" mb={5}>
+            {product.name}
+          </Heading>
+          <HStack>
+            <Text py="2" as="b">
+              Cantidad:
+            </Text>
+            <Text>{product.quantity}</Text>
+          </HStack>
+          <Text py="2" as="b">
+            Total:
+          </Text>{' '}
+          {`$${product.price * product.quantity}`}
         </CardBody>
 
-        <CardFooter>
-          <IconButton
-            variant="solid"
-            colorScheme="red"
-            icon={<DeleteIcon />}
-            onClick={() => removeProductToCart(product.id)}
-          ></IconButton>
+        <CardFooter alignSelf="center">
+          <Center>
+            <IconButton
+              variant="solid"
+              colorScheme="red"
+              size="sm"
+              icon={<DeleteIcon />}
+              onClick={() => removeProductToCart(product.id)}
+            ></IconButton>
+          </Center>
         </CardFooter>
       </Stack>
     </Card>

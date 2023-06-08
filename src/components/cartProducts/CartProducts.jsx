@@ -39,7 +39,7 @@ export const CartProducts = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Carrito de Compras</DrawerHeader>
+          <DrawerHeader fontSize="2xl">Carrito de Compras:</DrawerHeader>
 
           <DrawerBody>
             <SimpleGrid gap={5}>
@@ -48,7 +48,7 @@ export const CartProducts = () => {
               ))}
               <Divider />
               {cartProducts.length > 0 && (
-                <Text as="b" align="end">
+                <Text as="b" align="end" fontSize="large">
                   TOTAL : {`$${totalCartProducts}`}
                 </Text>
               )}
@@ -60,13 +60,17 @@ export const CartProducts = () => {
 
           {!!cartProducts.length && (
             <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={clearCart}>
+              <Button mr={2} onClick={clearCart}>
                 Vaciar carrito
               </Button>
               <Button
                 as={Link}
                 to="/Checkout"
-                colorScheme="blue"
+                variant="solid"
+                border="2px"
+                bg="black"
+                color="white"
+                _hover={{ bg: 'white', color: 'black' }}
                 onClick={onClose}
               >
                 Finalizar compra
