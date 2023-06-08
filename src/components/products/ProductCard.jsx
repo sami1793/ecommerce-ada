@@ -27,7 +27,7 @@ export const ProductCard = ({ product }) => {
         />
         <Stack mt="6" spacing="3">
           <Heading size="md">{product.name}</Heading>
-          <Text color="gray.700" fontSize="2xl">
+          <Text color="blue.400" fontSize="2xl">
             {`$${product.price}`}
           </Text>
         </Stack>
@@ -38,16 +38,21 @@ export const ProductCard = ({ product }) => {
             as={Link}
             to={`/products/${product.id}`}
             variant="outline"
-            colorScheme="gray"
+            border="2px"
+            borderColor="black"
+            _hover={{ bg: 'black', color: 'white' }}
           >
             Ver Detalles
           </Button>
           <Button
             variant="solid"
-            colorScheme="facebook"
+            border="2px"
+            bg="black"
+            color="white"
+            _hover={{ bg: 'white', color: 'black' }}
             onClick={() => addToCart(product)}
           >
-            <Text mr={2}>Agregar al carrito</Text>
+            <Text mr={2}>Agregar</Text>
             <BsCartFill />
           </Button>
         </ButtonGroup>

@@ -1,3 +1,5 @@
+import { FormBuy } from '../components/FormBuy'
+
 export const Checkout = () => {
-  return <div>Checkout</div>
+  return <FormBuy />
 }

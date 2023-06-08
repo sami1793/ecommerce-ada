@@ -46,7 +46,7 @@ export const NavApp = () => {
   }
 
   return (
-    <SimpleGrid columns={2} p={5}>
+    <SimpleGrid columns={2} p={5} backgroundColor="gray.800" color="white">
       <Heading>ADA Shop</Heading>
       <HStack as="nav" gap="5" justifyContent="flex-end">
         <Link as={NavLink} to="/">
@@ -57,7 +57,15 @@ export const NavApp = () => {
         </Link>
         <HStack justifyContent="flex-end">
           {!user && (
-            <Button as={NavLink} to="/login">
+            <Button
+              variant="outline"
+              color="white"
+              border="2px"
+              _hover={{ bg: 'white', color: 'black' }}
+              _active={{ bg: 'white', color: 'black' }}
+              as={NavLink}
+              to="/login"
+            >
               Iniciar Sesión
             </Button>
           )}
@@ -65,12 +73,15 @@ export const NavApp = () => {
             <Menu>
               <MenuButton
                 as={IconButton}
-                aria-label="Options"
                 icon={<BsFillPersonFill />}
                 variant="outline"
+                color="white"
+                border="2px"
+                _hover={{ bg: 'white', color: 'black' }}
+                _active={{ bg: 'white', color: 'black' }}
               />
 
-              <MenuList>
+              <MenuList color="black">
                 <MenuItem icon={<FiLogOut />} onClick={() => Logout()}>
                   Cerrar Sesión
                 </MenuItem>

@@ -6,7 +6,7 @@ export const PrivateRoute = ({ children }) => {
   const { user } = useContext(UserContext)
   //Si no esta logueado lo manda a la pagina de Login
   if (!user) {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" replace />
   }
   return children
 }

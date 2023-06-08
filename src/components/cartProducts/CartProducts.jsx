@@ -16,6 +16,7 @@ import { useContext } from 'react'
 import { CartProductCard } from './CartProductCard'
 import { CartProductsContext } from '../../context/CartProductsContext'
 import { BsCartFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 export const CartProducts = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -23,8 +24,16 @@ export const CartProducts = () => {
     useContext(CartProductsContext)
   return (
     <>
-      <Button colorScheme="facebook" onClick={onOpen}>
+      <Button
+        variant="outline"
+        color="white"
+        border="2px"
+        _hover={{ bg: 'white', color: 'black' }}
+        _active={{ bg: 'white', color: 'black' }}
+        onClick={onOpen}
+      >
         <BsCartFill />
+        <Text>{`(${cartProducts.length})`}</Text>
       </Button>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
@@ -38,7 +47,9 @@ export const CartProducts = () => {
                 <CartProductCard key={product.id} product={product} />
               ))}
               <Divider />
-              <Text align="end">TOTAL : {totalCartProducts}</Text>
+              <Text as="b" align="end">
+                TOTAL : {`$${totalCartProducts}`}
+              </Text>
               {!cartProducts.length && (
                 <Text align="center">No hay productos en el carrito :(</Text>
               )}
@@ -50,7 +61,14 @@ export const CartProducts = () => {
               <Button variant="outline" mr={3} onClick={clearCart}>
                 Vaciar carrito
               </Button>
-              <Button colorScheme="blue">Finalizar compra</Button>
+              <Button
+                as={Link}
+                to="/Checkout"
+                colorScheme="blue"
+                onClick={onClose}
+              >
+                Finalizar compra
+              </Button>
             </DrawerFooter>
           )}
         </DrawerContent>

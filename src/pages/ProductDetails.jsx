@@ -65,19 +65,20 @@ export const ProductDetails = () => {
 
         <Stack>
           <CardBody>
-            <Heading size="lg" mb={5}>
+            <Heading size="2xl" mb={5}>
               {product.name}
             </Heading>
 
             {product.description?.map((d, index) => (
               <>
-                <Text as="b">{specifications[index]}</Text>
+                <Text as="b" fontSize="lg">
+                  {specifications[index]}
+                </Text>
                 <Text key={index} py="2">
                   {d}
                 </Text>
               </>
             ))}
-            <Text>{product.description}</Text>
             <Text color="blue.400" fontSize="3xl" mt={3}>
               {`$${product.price}`}
             </Text>
@@ -91,8 +92,11 @@ export const ProductDetails = () => {
               alignItems={'center'}
             >
               <Button
+                borderRadius="full"
                 variant="outline"
-                colorScheme="gray"
+                border="2px"
+                borderColor="black"
+                _hover={{ bg: 'black', color: 'white' }}
                 as={Link}
                 to="/products"
               >
@@ -100,7 +104,11 @@ export const ProductDetails = () => {
               </Button>
               <Button
                 variant="solid"
-                colorScheme="facebook"
+                borderRadius="full"
+                border="2px"
+                bg="black"
+                color="white"
+                _hover={{ bg: 'white', color: 'black' }}
                 onClick={() => addToCart(product)}
               >
                 <Text mr={2}>Agregar al carrito</Text>

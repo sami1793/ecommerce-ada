@@ -8,13 +8,12 @@ import { Register } from './pages/auth/Register'
 import { NotFound } from './pages/NotFound'
 import { PrivateRoute } from './components/PrivateRoute'
 import { Checkout } from './pages/Checkout'
-import { FormBuy } from './components/FormBuy'
 
 function App() {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route path="/" element={<FormBuy />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products/:id" element={<ProductDetails />}></Route>
         <Route path="*" element={<NotFound />}></Route>
