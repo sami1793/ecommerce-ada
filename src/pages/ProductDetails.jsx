@@ -2,7 +2,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   Center,
   Flex,
   Heading,
@@ -16,8 +15,6 @@ import { Link, useParams } from 'react-router-dom'
 import { getProductByID } from '../services/products'
 import { BsCartFill } from 'react-icons/bs'
 import { CartProductsContext } from '../context/CartProductsContext'
-
-// import { useMemo } from 'react'
 
 export const ProductDetails = () => {
   const { id } = useParams()
@@ -57,15 +54,15 @@ export const ProductDetails = () => {
       >
         <Image
           objectFit="cover"
-          maxH={{ base: '100%', sm: '80vh' }}
-          maxW={{ sm: '300px' }}
+          height={{ base: 'auto', sm: '75vh' }}
+          maxW={{ base: '60vw', sm: '300px' }}
           src={product.image}
           alt={product.name}
         />
 
         <Stack>
           <CardBody>
-            <Heading size="2xl" mb={5}>
+            <Heading size={{ base: 'lg', sm: 'xl' }} mb={5}>
               {product.name}
             </Heading>
 
@@ -79,17 +76,17 @@ export const ProductDetails = () => {
                 </Text>
               </>
             ))}
-            <Text color="blue.400" fontSize="3xl" mt={3}>
+            <Text color="blue.400" fontSize={{ base: 'xl', sm: '2xl' }}>
               {`$${product.price}`}
             </Text>
-          </CardBody>
-
-          <CardFooter>
             <Flex
               gap="5"
-              direction={{ base: 'column', md: 'row' }}
-              justifyContent={'center'}
+              isfullWidth
+              direction={{ base: 'column', sm: 'row' }}
+              wrap="wrap"
+              justifyContent={'initial'}
               alignItems={'center'}
+              mt={3}
             >
               <Button
                 borderRadius="full"
@@ -116,7 +113,7 @@ export const ProductDetails = () => {
                 <BsCartFill />
               </Button>
             </Flex>
-          </CardFooter>
+          </CardBody>
         </Stack>
       </Card>
       {loading && (
