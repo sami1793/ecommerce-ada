@@ -24,7 +24,8 @@ Para realizar este proyecto se utilizaron diferentes herramientas y tecnologías
 - **React Hook Form**: Una librería utilizada para simplificar la validación de formularios en React.
 
 ## Vista Previa 👀
-![](src/assets/vista.PNG)
+![](public/home.PNG)
+![](public/cart.PNG)
 ## Deploy 🚀
 El proyecto está desplegado y disponible en línea. 
 Puedes acceder a la tienda virtual de celulares a través del siguiente enlace:
