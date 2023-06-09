@@ -1,14 +1,14 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import {
+  Box,
   Card,
   CardBody,
   CardFooter,
-  Center,
-  HStack,
+  CardHeader,
+  Flex,
   Heading,
   IconButton,
   Image,
-  Stack,
   Text,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
@@ -17,48 +17,44 @@ import { CartProductsContext } from '../../context/CartProductsContext'
 export const CartProductCard = ({ product }) => {
   const { removeProductToCart } = useContext(CartProductsContext)
   return (
-    <Card
-      direction={{ base: 'column', sm: 'row' }}
-      overflow="hidden"
-      variant="outline"
-    >
-      <Image
-        objectFit="cover"
-        maxH={{ base: '100%', sm: '150px' }}
-        src={product.image}
-        alt={product.name}
-        m={3}
-      />
+    <Card variant="elevated">
+      <CardHeader>
+        <Flex>
+          <Heading size="md">{product.name}</Heading>
+        </Flex>
+      </CardHeader>
 
-      <Stack>
-        <CardBody>
-          <Heading size="md" mb={5}>
-            {product.name}
-          </Heading>
-          <HStack>
+      <CardBody>
+        <Flex gap={2}>
+          <Image
+            objectFit="cover"
+            maxW={'45%'}
+            src={product.image}
+            alt={product.name}
+          />
+          <Box>
             <Text py="2" as="b">
               Cantidad:
-            </Text>
-            <Text>{product.quantity}</Text>
-          </HStack>
-          <Text py="2" as="b">
-            Total:
-          </Text>{' '}
-          {`$${product.price * product.quantity}`}
-        </CardBody>
+            </Text>{' '}
+            {product.quantity}
+            <br></br>
+            <Text py="2" as="b">
+              Total:
+            </Text>{' '}
+            {`$${product.price * product.quantity}`}
+          </Box>
+        </Flex>
+      </CardBody>
 
-        <CardFooter alignSelf="center">
-          <Center>
-            <IconButton
-              variant="solid"
-              colorScheme="red"
-              size="sm"
-              icon={<DeleteIcon />}
-              onClick={() => removeProductToCart(product.id)}
-            ></IconButton>
-          </Center>
-        </CardFooter>
-      </Stack>
+      <CardFooter alignSelf="end">
+        <IconButton
+          variant="solid"
+          colorScheme="red"
+          size="sm"
+          icon={<DeleteIcon />}
+          onClick={() => removeProductToCart(product.id)}
+        ></IconButton>
+      </CardFooter>
     </Card>
   )
 }
