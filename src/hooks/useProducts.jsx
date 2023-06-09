@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { allProductsWithFilter } from '../services/product.service'
 import { useDebounce } from './useDebounce'
+import { getNewProducts } from '../services/products'
 
 export const useProducts = () => {
   const [products, setProducts] = useState([])
+  const [newProducts, setNewProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [filterProduct, setFilterProduct] = useState({
@@ -60,11 +62,21 @@ export const useProducts = () => {
     getData()
   }, [debounceValue]) //Actualiza cuando cambia el debounce
 
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getNewProducts()
+
+      setNewProducts(data)
+    }
+    getData()
+  }, []) //Actualiza cuando cambia el debounce
+
   return {
     products,
     loading,
     error,
     handleFilter,
     filterProduct,
+    newProducts,
   }
 }

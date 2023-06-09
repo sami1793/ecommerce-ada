@@ -1,14 +1,49 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
+import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout'
 import { BsBoxSeam } from 'react-icons/bs'
 import { TbPigMoney } from 'react-icons/tb'
 import { MdPeopleOutline } from 'react-icons/md'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { useProducts } from '../hooks/useProducts'
+import { ProductCard } from '../components/products/ProductCard'
+import { Button } from '@chakra-ui/button'
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
+  const { newProducts } = useProducts()
   return (
     <>
-      <Flex justifyContent="center">
-        <Heading>Novedades</Heading>
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
+        gap={5}
+        p={5}
+        bgColor="gray.100"
+        // h="100vh"
+      >
+        <Heading size="xl" color="blue.600">
+          Novedades
+        </Heading>
+        <Flex direction="column" justifyContent="center" alignItems="center">
+          <SimpleGrid spacing={5} columns={{ base: 1, md: 2, lg: 3 }} p={2}>
+            {newProducts?.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </SimpleGrid>
+        </Flex>
+        <Button
+          borderRadius="full"
+          variant="outline"
+          border="2px"
+          borderColor="blue.500"
+          color="blue.500"
+          _hover={{ bg: 'blue.500', color: 'white' }}
+          as={Link}
+          to="/products"
+          size="lg"
+          m={5}
+        >
+          Ver catálogo completo
+        </Button>
       </Flex>
       <Flex justifyContent="center" p={5} gap={5} wrap="wrap">
         <Box

@@ -32,6 +32,7 @@ export const FormBuy = () => {
       maxW="md"
       mx="auto"
       mt={8}
+      mb={5}
       p={6}
       borderWidth="1px"
       borderRadius="md"
@@ -123,6 +124,11 @@ export const FormBuy = () => {
             type="submit"
             colorScheme="teal"
             mt={6}
+            variant="solid"
+            border="2px"
+            bg="black"
+            color="white"
+            _hover={{ bg: 'white', color: 'black' }}
             isFullWidth
             isLoading={isSubmitting}
           >
