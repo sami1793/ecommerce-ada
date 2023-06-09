@@ -6,6 +6,7 @@ La aplicación utiliza `Firebase` como base de datos para almacenar los producto
 Permite a los usuarios crear una cuenta o acceder con su cuenta de Google. 
 La tienda incluye un carrito de compras y la capacidad de ver los detalles de cada producto. 
 Además, se utiliza `React Router Dom` para gestionar las rutas y `React Hook Form` para validar los formularios. 
+Para comodidad en la búsqueda del producto cuenta con filtros, permiten encontrar porducto por nombre, por marca y por precio máximo. 
 También se han implementado rutas protegidas para ciertas funcionalidades.
 
 ## Herramientas y tecnologías 🛠️
