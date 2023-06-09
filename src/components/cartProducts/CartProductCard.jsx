@@ -3,7 +3,6 @@ import {
   Box,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Flex,
   Heading,
@@ -32,29 +31,28 @@ export const CartProductCard = ({ product }) => {
             src={product.image}
             alt={product.name}
           />
-          <Box>
-            <Text py="2" as="b">
-              Cantidad:
-            </Text>{' '}
-            {product.quantity}
-            <br></br>
-            <Text py="2" as="b">
-              Total:
-            </Text>{' '}
-            {`$${product.price * product.quantity}`}
-          </Box>
+          <Flex gap={5} direction="column" alignItems="center">
+            <Box>
+              <Text py="2" as="b">
+                Cantidad:
+              </Text>{' '}
+              {product.quantity}
+              <br></br>
+              <Text py="2" as="b">
+                Total:
+              </Text>{' '}
+              {`$${product.price * product.quantity}`}
+            </Box>
+            <IconButton
+              variant="solid"
+              colorScheme="red"
+              size="sm"
+              icon={<DeleteIcon />}
+              onClick={() => removeProductToCart(product.id)}
+            ></IconButton>
+          </Flex>
         </Flex>
       </CardBody>
-
-      <CardFooter alignSelf="end">
-        <IconButton
-          variant="solid"
-          colorScheme="red"
-          size="sm"
-          icon={<DeleteIcon />}
-          onClick={() => removeProductToCart(product.id)}
-        ></IconButton>
-      </CardFooter>
     </Card>
   )
 }
