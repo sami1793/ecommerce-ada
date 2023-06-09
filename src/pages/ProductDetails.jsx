@@ -44,7 +44,6 @@ export const ProductDetails = () => {
     }
     getData()
   }, [id])
-  console.log(product)
   return (
     <>
       <Card

@@ -18,7 +18,6 @@ export const CartProductsProvider = ({ children }) => {
       setCartProducts(newCartProducts)
     } else {
       setCartProducts([...cartProducts, { ...product, quantity: 1 }])
-      console.log(cartProducts)
     }
 
     toast({

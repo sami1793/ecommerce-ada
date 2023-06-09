@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   HStack,
   Heading,
   IconButton,
@@ -9,6 +10,7 @@ import {
   MenuItem,
   MenuList,
   SimpleGrid,
+  Text,
   useToast,
 } from '@chakra-ui/react'
 import { Link as NavLink } from 'react-router-dom'
@@ -20,6 +22,7 @@ import { auth } from '../firebase/config'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FiLogOut } from 'react-icons/fi'
 import { EditIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { MdCellTower } from 'react-icons/md'
 export const NavApp = () => {
   const { user, handleLogout } = useContext(UserContext)
   const toast = useToast()
@@ -47,7 +50,12 @@ export const NavApp = () => {
 
   return (
     <SimpleGrid columns={2} p={5} backgroundColor="gray.800" color="white">
-      <Heading>ADA Shop</Heading>
+      <Heading as={NavLink} to="/">
+        <Flex>
+          <MdCellTower fontSize="larger" />
+          <Text>daCell</Text>
+        </Flex>
+      </Heading>
       {/* Deskptop */}
       <HStack as="nav" justifyContent="flex-end">
         <HStack

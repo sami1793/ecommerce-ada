@@ -97,10 +97,10 @@ export const Login = () => {
           aria-label="Volver atrás"
           mb={4}
           variant="solid"
-          color="white"
-          bg="black.900"
+          bg="black"
           border="2px"
-          _hover={{ bg: 'black', color: 'white' }}
+          color="white"
+          _hover={{ bg: 'white', color: 'black' }}
           onClick={() => handleBackClick()}
         />
         <Heading as="h2" size="lg" textAlign="center" mb={6}>
@@ -109,11 +109,10 @@ export const Login = () => {
         <Center mb={5}>
           <Button
             variant="solid"
+            bg="black"
             border="2px"
-            borderColor="black"
-            bg="black.900"
             color="white"
-            _hover={{ bg: 'black', color: 'white' }}
+            _hover={{ bg: 'white', color: 'black' }}
             mt={4}
             leftIcon={<FcGoogle />}
             onClick={logWithGoogle}

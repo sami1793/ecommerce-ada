@@ -9,11 +9,9 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid
+        // const uid = user.uid
         // console.log('Ya estaba logeado')
         setUser(user)
-        console.log(uid)
-        // ...
       } else {
         // console.log('El usuario no esta logeado')
         setUser(null)
